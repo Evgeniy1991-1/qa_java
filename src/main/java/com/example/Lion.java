@@ -2,16 +2,13 @@ package com.example;
 
 import java.util.List;
 
-public class Lion {
+public class Lion extends Feline {
 
-    // Зависимость передается через интерфейс/класс, а не создается внутри
-    private final Predator predator;
+    private final Feline feline;
     boolean hasMane;
 
-    // Конструктор принимает Predator извне (Инъекция зависимостей)
-    public Lion(Predator predator, String sex) throws Exception {
-        this.predator = predator;
-
+    public Lion(Feline feline, String sex) throws Exception {
+        this.feline = feline;
         if ("Самец".equals(sex)) {
             this.hasMane = true;
         } else if ("Самка".equals(sex)) {
@@ -26,6 +23,6 @@ public class Lion {
     }
 
     public List<String> getFood() throws Exception {
-        return predator.eatMeat();
+        return feline.getFood("Хищник");
     }
 }

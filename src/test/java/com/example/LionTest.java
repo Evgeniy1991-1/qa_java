@@ -14,20 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LionTest {
 
     @Mock
-    private Predator predator;
+    private Feline feline; // Мокаем Feline
 
     @Test
     public void testLionConstructorThrowsExceptionOnInvalidSex() {
         Exception exception = assertThrows(Exception.class, () -> {
-            new Lion(predator, "НедопустимоеЗначение");
+            new Lion(feline, "НедопустимоеЗначение");
         });
         assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
 
     @Test
     public void testGetFood() throws Exception {
-        Lion lion = new Lion(predator, "Самец");
-        Mockito.when(predator.eatMeat()).thenReturn(List.of("Животные", "Птицы"));
-        assertEquals(List.of("Животные", "Птицы"), lion.getFood());
+        Lion lion = new Lion(feline, "Самец");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
     }
 }

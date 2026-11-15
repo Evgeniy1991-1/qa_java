@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LionParameterizedTest {
 
     @Mock
-    private Predator predator;
+    private Feline feline; // Заменили Predator на Feline
 
     @ParameterizedTest(name = "Для пола {0} наличие гривы должно быть {1}")
     @CsvSource({
@@ -20,7 +20,7 @@ public class LionParameterizedTest {
             "Самка, false"
     })
     public void testLionMane(String sex, boolean expectedHasMane) throws Exception {
-        Lion lion = new Lion(predator, sex);
+        Lion lion = new Lion(feline, sex);
         assertEquals(expectedHasMane, lion.doesHaveMane());
     }
 }
